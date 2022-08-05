@@ -23,6 +23,8 @@ const Menu = (props) => {
           menu={props.type}
           selectFoodItem={props.selectFoodItem}
           FoodItem={item}
+          clicks={props.clicks}
+          generateComment={props.generateComment}
         />
       );
     });
