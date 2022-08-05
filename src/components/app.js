@@ -9,6 +9,7 @@ export default function App() {
   const [totalPrice, setTotalPrice] = useState(0);
   const [comment, setComment] = useState("");
   const [clicked, setClicked] = useState([]);
+  const [reset, setReset] = useState(false);
 
   const generateComment = (title) => {
     const waitressComments = [
@@ -23,6 +24,7 @@ export default function App() {
   };
 
   const selectFoodItem = (FoodItem) => {
+    reset === true ? setReset(false) : null;
     if (mainCourse.price === 0) {
       setMainCourse(FoodItem);
     } else if (sideOne.price === 0) {
@@ -38,6 +40,9 @@ export default function App() {
 
   useEffect(() => {
     setTotalPrice(calculateTotalPrice());
+    if (reset === true) {
+      setReset(false);
+    }
   }, [mainCourse, sideOne, sideTwo, comment]);
 
   const resetItems = () => {
@@ -46,6 +51,7 @@ export default function App() {
     setSideTwo({ price: 0 });
     setComment("");
     setClicked([]);
+    setReset(true);
   };
 
   return (
@@ -57,18 +63,21 @@ export default function App() {
           selectFoodItem={selectFoodItem}
           generateComment={generateComment}
           clicked={clicked}
+          reset={reset}
         />
         <Menu
           type={"lunch"}
           selectFoodItem={selectFoodItem}
           generateComment={generateComment}
           clicked={clicked}
+          reset={reset}
         />
         <Menu
           type={"dinner"}
           selectFoodItem={selectFoodItem}
           generateComment={generateComment}
           clicked={clicked}
+          reset={reset}
         />
       </div>
       <Order
