@@ -1,17 +1,20 @@
-//blue print for how we want our food items to look
-
-import React from "react";
+import React, { useState } from "react";
 
 const FoodItem = (props) => {
-  const { title, price } = props.FoodItem; //destructuring and placing the two properties into the FoodItem
+  const { title, price } = props.FoodItem;
+  const [clicked, setClicked] = useState("");
 
   return (
     <div
-      className="FoodItem-container"
-      onClick={() => props.selectFoodItem(props.FoodItem)}
+      className="foodItem-container"
+      onClick={() => {
+        //setClicked("clicked");
+        return props.selectFoodItem(props.FoodItem);
+      }}
     >
-      <h3>{title}</h3>
-      <div>{price}</div>
+      <h3 className={`food-display`}>
+        {title}: <span className="price-tag">${price}</span>
+      </h3>
     </div>
   );
 };
