@@ -25,6 +25,7 @@ const Menu = (props) => {
           FoodItem={item}
           clicks={props.clicks}
           generateComment={props.generateComment}
+          clicked={props.clicked}
         />
       );
     });
